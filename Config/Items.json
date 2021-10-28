@@ -1,0 +1,16 @@
+[
+    {
+        "name": "slime ball",
+        "id": "SLIME_BALL",
+        "description": "",
+        "type": "ITEM",
+        "class": "Uncommon"
+    },
+    {
+        "name": "slime water",
+        "id": "SLIME_WATER",
+        "description": "",
+        "type": "ITEM",
+        "class": "common"
+    }
+]

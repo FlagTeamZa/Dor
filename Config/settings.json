@@ -1,0 +1,35 @@
+[
+    {
+        "id": "320207369235595265",
+        "page": "profile",
+        "pageID": "900178289694490645",
+        "mail": [
+            {
+                "type": "system_request_invite_party",
+                "user": "320207369235595265",
+                "target": "885515436865757236"
+            },
+            {
+                "type": "system_request_accept_invite_party",
+                "user": "320207369235595265",
+                "target": "885515436865757236"
+            }
+        ],
+        "msg": "ไม่มี",
+        "Mode": "emoji"
+    },
+    {
+        "id": "885515436865757236",
+        "page": "profile",
+        "pageID": "900178118755643392",
+        "mail": [
+            {
+                "type": "system_accept_invite_party",
+                "user": "320207369235595265",
+                "target": "885515436865757236"
+            }
+        ],
+        "msg": "ไม่มี",
+        "Mode": "emoji"
+    }
+]
