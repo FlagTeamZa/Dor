@@ -1,7 +1,6 @@
 const CreateCharacterConfig = require("../Event/Config/CreateCharacterConfig");
 const CreateImg1_embed = require("../GUI/CreateImg1_embed");
 const CCc = new CreateCharacterConfig();
-// CreateImg_embed
 const set = require("../Config/set.json");
 const SkillButtons = require("../GUI/Buttons/SkillButtons");
 const PartyClass = require("./PartyClass");
@@ -22,9 +21,7 @@ module.exports = class InventoryClass{
     async Create(message,user){
         
         var userSetting = setting.get(user);
-        // var partyPage = p.msgID ? p.msgID : userSetting.pageID;
         var embed = Inventory_embed.Inv(user);
-        // var row = SkillButtons.get();
         message.channel.messages.fetch({around: userSetting.pageID, limit: 1})
         .then(messages => {
 
