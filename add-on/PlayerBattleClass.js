@@ -17,7 +17,7 @@ module.exports = class PlayerBattleClass{
     constructor(message,user,embed){
         this.Create(message,user,embed);
     }
-
+ 
     isParty(id,head){
       var p = Party.getParty(id);
       if (p.head === head) {
