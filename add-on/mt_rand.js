@@ -1,5 +1,5 @@
 module.exports = function mt_rand (min, max) { 
-
+ 
     const argc = arguments.length
     if (argc === 0) {
       min = 0
