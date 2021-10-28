@@ -12,7 +12,7 @@ const CCc = new CreateCharacterConfig();
 // UserUniformEvent
 const name = "SelectSkillButtonEvent";
 const set = require("../../Config/set.json");
-const EnemyBattleClass = require("../../add-on/EnemyBattleClass");
+// const EnemyBattleClass = require("../../add-on/EnemyBattleClass");
 const CreatePartyConfig = require("../Config/CreatePartyConfig");
 const Party = new CreatePartyConfig();
 // CreateP
