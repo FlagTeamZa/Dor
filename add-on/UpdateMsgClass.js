@@ -7,7 +7,7 @@ const setting = new UserSettingConfig();
 // ProfileClass
 module.exports = class UpdateMsgClass{
     constructor(message,user){
-        this.Create(message,user);
+        this.Create(message,user); 
     }
 
     async Create(message,user){
