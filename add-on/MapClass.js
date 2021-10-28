@@ -2,7 +2,6 @@ const CreateCharacterConfig = require("../Event/Config/CreateCharacterConfig");
 const UserSettingConfig = require("../Event/Config/UserSettingConfig");
 const map_embed = require("../GUI/party/map_embed");
 const CCc = new CreateCharacterConfig();
-// UserSettingConfig
 const setting = new UserSettingConfig();
 
 module.exports = class MapClass{
