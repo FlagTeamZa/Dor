@@ -4,8 +4,6 @@ const CreateImgButton2 = require("../GUI/Buttons/CreateImgButton2");
 const CreateImgButton3 = require("../GUI/Buttons/CreateImgButton3");
 const CreateImg1_embed = require("../GUI/CreateImg1_embed");
 const CCc = new CreateCharacterConfig();
-// CreateImg_embed
-
 module.exports = class ButtonsClass{
     constructor(message,attachment,user){
         this.Create(message,attachment,user);
