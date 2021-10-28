@@ -3,15 +3,6 @@ const createimg = require("../Event/createimg");
 // const SkinFilter = require("../Items/SkinFilter");
 const CreateImg1_embed = require("../GUI/CreateImg1_embed");
 const CreateImg_embed = require("../GUI/CreateImg_embed");
-// createimg
-// const SkinFilter = require("../Event/ReactionFilter/SkinFilter");
-// Ski
-// const SkinFilter = require("./SkinFilter");
-// SkinFilter
-// const SkinFilter = require("../Event/ReactionFilter/SkinFilter");
-// SkinFilter
-// SkinFilter
-// CreateCharacterConfig
 const CCc = new CreateCharacterConfig();
 // CreateImg_embed
 const set = require("../Config/set.json");
