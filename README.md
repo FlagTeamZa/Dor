@@ -9,7 +9,11 @@ Discord ที่ใช้เทสบอท >> [CLICK](https://discord.gg/qmsTF
 
 ### 🔰 เป็นสปอนเซอร์ให้กับโปรเจคนี้
 
-[ให้ทิปผ่าน True Wallet](https://tmn.app.link/QGWeqiddEkb).
+ให้ทิปผ่าน True Wallet
+
+098-058-9052
+
+สำหรับมือถือกดได้[ที่นี่](https://tmn.app.link/QGWeqiddEkb).
 
 ### 📝 ลิขสิทธิ์
 
