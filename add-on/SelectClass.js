@@ -18,7 +18,7 @@ module.exports = class SelectClass{
         .then(messages => {
           messages.first().edit({content: `<@${message.author.id}>`,files: [], components: [],attachments: [], embeds: [embed]}).then(msg =>{
 
-
+ 
           });
 
         });
