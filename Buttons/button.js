@@ -18,27 +18,20 @@ fs.readdirSync("./Buttons/buttons")
 });
 console.log(`[System] Buttons loaded process ${(Date.now() - date1) / 1000} sec`);
 	// test.run(client);
-client.on("messageCreate", async message => {
-		if (message.author.bot) {
-			return;
-		}
+    client.on("interactionCreate", async i => {
+        if (i.isButton()) {
 		// console.log();
-		var msg = message.content.split(" ");
-			if (!cmd[msg[0]]) {
+	
+			if (!but[i.customId]) {
 				return;
 			}
 		// }
 			// console.log(cmd);
-			if (cmd[msg[0]]) {
-				cmd[msg[0]].run(message);
+			if (but[i.customId]) {
+				but[i.customId].run(i);
 			}
 			
-			console.log(cmd[msg[0]].connect_msg);
 
-		// console.log(`[System] Command ${file} loaded`);
-        // command(client);
-		// client.commands.set(command.name, command);
-	
-
-});
+		}
+	});
 }
