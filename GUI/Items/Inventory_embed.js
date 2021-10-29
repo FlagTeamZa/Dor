@@ -23,7 +23,7 @@ module.exports = {
       var weapon = "";
       var w = [
          `↬ มือซ้าย: ${L_hand}`,
-         `↬ มือขวา: ${R_hand}`,
+         `↬ มือขวา: ${R_hand}`, 
          `↬ หมวก: ${head}`,
          `↬ เสื้อ: ${chest}`,
          `↬ กางเกง: ${legs}`,
