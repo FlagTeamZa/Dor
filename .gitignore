@@ -1,6 +1,6 @@
 Img
 node_modules
-bot.js
+# bot.js
 config.json
 package.json
 package-lock.json
