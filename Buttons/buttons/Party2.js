@@ -9,7 +9,6 @@ module.exports = {
 name: "Party2",
 run: async (i) => {
     var user = i.user.id;
-    // var userSetting = setting.get(user);
     var p = Party.getParty(user);
     var row = MapDropdown.get();
     if (p.msgID === i.message.id) {

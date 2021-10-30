@@ -28,6 +28,7 @@ const UserSettingConfig = require("./Event/Config/UserSettingConfig");
 const UserEconomyConfig = require("./Event/Config/UserEconomyConfig");
 const UserInventory = require("./Items/Event/Inventory");
 const button = require("./Buttons/button");
+const dropdown = require("./Dropdowns/Dropdown");
 config.varsion = config.varsion+1;
 fs.writeFile("./config.json", JSON.stringify(config,null,4), (err) => {
     if (err) console.error(err)
@@ -42,7 +43,7 @@ fs.writeFile("./config.json", JSON.stringify(config,null,4), (err) => {
  new UserEconomyConfig(0);
  cmd(client);
  button(client);
-
+ dropdown(client);
 client.on('ready', ()=>{
     console.log("[System] BOT is ready.");
 
