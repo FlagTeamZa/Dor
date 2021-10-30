@@ -132,25 +132,18 @@ module.exports = {
     backpack(user){
 
       var pack = Inv.getInventory(user);
+      var max = Inv.getSlot(user);
       var slot = "";
       var f = [];
       for (let i = 0; i < pack.length; i++) {
-        slot += `${pack[i].item} ${pack[i].count} ea \n`;
-        if (slot.length > 90) {
-          var ob = {
-              name: `↬ 1 - ${i+1} ₊˚`,
-              value: `${slot}`,
-              inline: false 
-          }
-          f.push(ob);
-        }
+        slot += `${i+1}). ${pack[i].item} ${pack[i].count} ea \n`;
       }
 
       const exampleEmbed = new MessageEmbed()
       .setColor("#"+color.normal)
-      .setTitle('◈ กระเป๋า ₊˚')
-      .setDescription('b.profile เพื่อดูโปรไฟล์ของคุณ')
-      .addFields(f)
+      .setTitle(`◈ กระเป๋า ${Inv.getInventory(user).length} / ${max}₊˚`)
+      .setDescription(slot)
+      // .addFields(f)
       .setTimestamp()
       .setFooter(config.Game_name);
 

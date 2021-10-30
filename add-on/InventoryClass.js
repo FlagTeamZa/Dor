@@ -1,5 +1,6 @@
 
 const UserSettingConfig = require("../Event/Config/UserSettingConfig");
+const bInventoryButtons = require("../GUI/Buttons/bInventoryButtons");
 const InventoryButtons = require("../GUI/Buttons/InventoryButtons");
 const wInventoryButtons = require("../GUI/Buttons/wInventoryButtons");
 const setting = new UserSettingConfig();
@@ -45,5 +46,16 @@ module.exports = class InventoryClass{
             });
           });
       }
+      async backpack(message,user){
+        var userSetting = setting.get(user);
+        var embed = Inventory_embed.backpack(user);
+        var row = bInventoryButtons.get();
+        message.channel.messages.fetch({around: userSetting.pageID, limit: 1})
+        .then(messages => {
 
+          messages.first().edit({content: `<@${user}>`,files: [], components: [row],attachments: [], embeds: [embed]}).then(msg =>{
+            msg.reactions.removeAll();
+          });
+        });
+    }
 }
