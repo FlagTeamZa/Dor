@@ -131,69 +131,24 @@ module.exports = {
     },
     backpack(user){
 
-      var L_hand = Inv.getLeftHand(user) ? Inv.getLeftHand(user): "ไม่มี";
-      var R_hand = Inv.getRightHand(user) ? Inv.getRightHand(user): "ไม่มี";
-      var head = Inv.getHead(user) ? Inv.getHead(user): "ไม่มี";
-      var chest = Inv.getChest(user) ? Inv.getChest(user): "ไม่มี";
-      var legs = Inv.getLegs(user) ? Inv.getLegs(user): "ไม่มี";
-      var feet = Inv.getFeet(user) ? Inv.getFeet(user): "ไม่มี";
-      var pack = Inv.getInventory(user).length;
-      var max = Inv.getSlot(user);
-
-      var weapon = "";
-      var w = [
-         `↬ มือซ้าย: ${L_hand}`,
-         `↬ มือขวา: ${R_hand}`, 
-         `↬ หมวก: ${head}`,
-         `↬ เสื้อ: ${chest}`,
-         `↬ กางเกง: ${legs}`,
-         `↬ รองเท้า: ${feet}`
-      ]
-      for (let i = 0; i < w.length; i++) {
-       weapon += w[i]+"\n";
-      }
-
-      var f = [
-        { 
-          name: "↬ มือซ้าย ₊˚", 
-          value: `${L_hand}`, 
-          inline: true 
-        },
-        {
-          name: "↬ มือขวา ₊˚",
-          value: `${R_hand}`,
-          inline: true
-        },
-        {
-          name: "↬ หมวก ₊˚",
-          value: `${head}`,
-          inline: true
-        },
-        {
-          name: "↬ เสื้อ ₊˚",
-          value: `${chest}`,
-          inline: true
-        },
-        {
-          name: "↬ กางเกง ₊˚",
-          value: `${legs}`,
-          inline: true
-        },   
-        {
-          name: "↬ รองเท้า ₊˚",
-          value: `${feet}`,
-          inline: true
-        },
-        {
-          name: "↬ ไอเทมที่สวมใส่ได้ ₊˚",
-          value: `ไม่มี`,
-          inline: false
+      var pack = Inv.getInventory(user);
+      var slot = "";
+      var f = [];
+      for (let i = 0; i < pack.length; i++) {
+        slot += `${pack[i].item} ${pack[i].count} ea \n`;
+        if (slot.length > 90) {
+          var ob = {
+              name: `↬ 1 - ${i+1} ₊˚`,
+              value: `${slot}`,
+              inline: false 
+          }
+          f.push(ob);
         }
-      ];
+      }
 
       const exampleEmbed = new MessageEmbed()
       .setColor("#"+color.normal)
-      .setTitle('◈ อาวุธและชุดเกราะ ₊˚')
+      .setTitle('◈ กระเป๋า ₊˚')
       .setDescription('b.profile เพื่อดูโปรไฟล์ของคุณ')
       .addFields(f)
       .setTimestamp()
