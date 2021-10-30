@@ -1,11 +1,11 @@
 
 const {MessageButton} = require("discord.js");
-const name = "Profile1";
+const name = "Profile3";
 module.exports = {
     get(value = 0){
         var button = new MessageButton()
         .setCustomId(name)
-        .setLabel("สร้างปาร์ตี้")
+        .setLabel("ปาร์ตี้")
         .setStyle('PRIMARY')
         // .setEmoji("⚔️");
         if (value === 1) {
