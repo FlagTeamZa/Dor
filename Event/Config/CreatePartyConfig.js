@@ -26,9 +26,9 @@ module.exports = class CreatePartyConfig{
           if (err) console.error(err)
            });
     }
-    async create(message){
+    async create(user){
         var id = this.genParty_ID();
-        var head = message.author.id;
+        var head = user;
         var member = [head];
 
         PARTID[id] = {

@@ -28,7 +28,7 @@ console.log(`[System] Buttons loaded process ${(Date.now() - date1) / 1000} sec`
 		// }
 			// console.log(cmd);
 			if (but[i.customId]) {
-				but[i.customId].run(i);
+				await but[i.customId].run(i);
 			}
 			
 

@@ -6,6 +6,7 @@ const party_embed = require("../GUI/party/party_embed");
 const CreatePartyConfig = require("../Event/Config/CreatePartyConfig");
 const UserSettingConfig = require("../Event/Config/UserSettingConfig");
 const MapClass = require("./MapClass");
+const PartyButtons = require("../GUI/Buttons/PartyButtons");
 const setting = new UserSettingConfig();
 const Party = new CreatePartyConfig();
 module.exports = class PartyClass{
@@ -17,7 +18,7 @@ module.exports = class PartyClass{
       var p = Party.getParty(user);
       // console.log(p);
         if (!p) {
-          Party.create(message);
+          Party.create(user);
         }
 
         var p = Party.getParty(user);
@@ -27,40 +28,15 @@ module.exports = class PartyClass{
         for (let i = 0; i < p.member.length; i++) {
          me+=`<@${p.member[i]}>`;
         }
-        var userSetting = setting.get(message.author.id);
-        // console.log(CCc.get("msg",user));
+        var userSetting = setting.get(user);
+        var row = PartyButtons.get(user);
 
         message.channel.messages.fetch({around: userSetting.pageID, limit: 1})
         .then(messages => {
           // attachment
-          messages.first().edit({content: `${me}`,files: [], components: [],attachments: [], embeds: [embed]}).then(msg =>{
-              msg.react("🗺️");
-              const filter = (reaction, user) => {
-                return reaction.emoji.name === '🗺️' && user.id === message.author.id;
-              };
-              
-              const collector = msg.createReactionCollector({ filter, time: 60000 });
-              
-              collector.on('collect', (reaction, user) => {
-                if (user.id === userSetting.id) {
-                    
-                    if (reaction.emoji.name === "🗺️") {
-                        new MapClass(message,user.id);
-                        msg.reactions.removeAll();
-                        collector.stop();
-                        console.log(`Collected ${reaction.emoji.name} from ${user.tag} id ${user.id}`);
-                    }
-                  }
-                });                  
-
-              
-              collector.on('end', collected => {
-                console.log(`Collected ${collected.size} items`);
-              });
-
-          });
-
+          messages.first().edit({content: `${me}`,files: [], components: [row],attachments: [], embeds: [embed]}).then(msg =>{
+  
         });
-
+      });
     }
 }

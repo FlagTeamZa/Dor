@@ -6,7 +6,7 @@ const setting = new userconfig();
 
 module.exports = {
 name: "wInv1",
-run: (i) => {
+run: async (i) => {
     var user = i.user.id;
     var userSetting = setting.get(user);
     if (userSetting.pageID === i.message.id) {
