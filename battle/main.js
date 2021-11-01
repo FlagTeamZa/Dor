@@ -133,7 +133,7 @@ module.exports = class Main {
                 Epic,
                 Legenary
             );
-            var Item = Uncommon ? Uncommon : Common ? Common : Rare ? Rare : Epic ? Epic : Legenary ? Legenary : false;
+            var Item = Legenary ? Legenary : Epic ? Epic : Rare ? Rare : Common ? Common : Uncommon ? Uncommon : false;
             //  Uncommon ? Uncommon ? Uncommon : Common ? Common : Rare ? Rare : Epic ? Epic : Legenary ? Legenary : false : false;
             console.log(Item);
             var exp = mt_rand(monster.Drop.EXP.min,monster.Drop.EXP.max);
