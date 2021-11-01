@@ -86,7 +86,24 @@ module.exports = (client) => {
                 break;
 
                 case "Skill4":
-                    
+                  var p = Party.getParty(i.user.id);
+                  if (!p) {
+                    return;
+                  }
+                  if (p.msgID !== i.message.id) {
+                    return;
+                  }
+                  if (main_.isUse(i.user.id)) {
+                    return; 
+                   }
+                  if (main_.isCooldown(i.user.id,3)) {
+                    return;
+                  }
+                  main_.PlayerATK(
+                    i.user.id,
+                    3,
+                    i.message
+                  )    
                 break;
                                 
             }
