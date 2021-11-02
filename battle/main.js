@@ -190,7 +190,23 @@ module.exports = class Main {
             }
         }
     }
- 
+    async PlayerSkill(value,i,m){
+       switch (value.type) {
+            case "buff":
+            var ob = {
+                "name": value.name,
+                "turn": value.turn
+            }
+            arg[i].member[m].Buff.push(ob);
+            //msg
+            break;
+       
+            case "atk":
+               
+            break;
+       }
+    }
+    
     PlayerATK(id,skill,message){
         let username = Users.getName(id);
         let job = Users.getJob(id);
@@ -199,54 +215,9 @@ module.exports = class Main {
                 if (arg[i].member[a].username === username) {
                     arg[i].member[a].useSkill = true;
                     arg[i].member[a].cooldownSkill[skill] = jobs[job].Skill[skill].cooldown;
+                    await this.PlayerSkill(jobs[job].run(skill,arg[i].member[a]));
 
-                    switch (jobs[job].Skill[skill].type.split("-")[1]) {
-                        case "def":
-                        
-                        switch (jobs[job].Skill[skill].type.split("-")[0]) {
-                            case "all":
-                              
-                                for (let c = 0; c < arg[i].member.length; c++) {
-                                    var ob = {
-                                        "type": `def-${jobs[job].Skill[skill].type.split("-")[3]}`,
-                                        "turn": `${jobs[job].Skill[skill].type.split("-")[2]}`
-                                    }
-                                    arg[i].member[c].Buff.push(ob);
-                                    
-                                }
-                                arg[i].member[a].msg = `${username} : บัฟเกราะ 35 % 3 เทิร์นให้เพื่อนร่วมทีมทุกคน\n`;
-                                var dmg = 0;
-
-                            break;
-                        
-                        }
-
-                        break;
-                    
-                        case "atk":
-                        
-                        switch (jobs[job].Skill[skill].type.split("-")[0]) {
-                            case "cr10":
-                               
-                                let cri = mt_rand(1,10) < 2 ? arg[i].member[a].Dmg * 2 : 0;
-                                var dmg = (arg[i].member[a].Dmg * jobs[job].Skill[skill].dmg_per) + cri;
-                                arg[i].member[a].msg =`${username} : สร้างความเสียหาย ${dmg}!\n`;
-                            break;
-
-                            case "100hp":
-                                var dmg = arg[i].member[a].HP - arg[i].member[a].MaxHP;
-                                arg[i].member[a].msg =`${username} : สร้างความเสียหาย ${dmg}!\n`;
-                            break;
-                            
-                            case "normal":
-                                var dmg = arg[i].member[a].dmg;
-                                arg[i].member[a].msg =`${username} : สร้างความเสียหาย ${dmg}!\n`;
-                            break;
-                        }
-
-                        break;
-                    }
-
+                    return;
                     arg[i].seesion = arg[i].seesion+1;
                     let pm = "";
                     for (let g = 0; g < arg[i].member.length; g++) {
