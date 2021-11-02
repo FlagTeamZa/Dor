@@ -9,6 +9,7 @@ module.exports = {
                 var ob = {
                     "type": "buff",
                     "name": "all-def-3-35",
+                    "turn": 3,
                     "msg": "%user% : บัฟเกราะ 35 % 3 เทิร์นให้เพื่อนร่วมทีมทุกคน"
                 }
             return ob;
