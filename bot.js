@@ -30,9 +30,6 @@ const UserInventory = require("./Items/Event/Inventory");
 const button = require("./Buttons/button");
 const dropdown = require("./Dropdowns/Dropdown");
 config.varsion = config.varsion+1;
-fs.writeFile("./config.json", JSON.stringify(config,null,4), (err) => {
-    if (err) console.error(err)
- });
  Event(client);
  new UserInventory(0);
  new CreatePartyConfig(0);
@@ -61,6 +58,9 @@ client.on('ready', ()=>{
         }
             );
             new timer();
+            fs.writeFile("./config.json", JSON.stringify(config,null,4), (err) => {
+                if (err) console.error(err)
+             });
     }); 
 // client.on("messageCreate", async message => {
 //     // message.author.bot
