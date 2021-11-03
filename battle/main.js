@@ -191,6 +191,8 @@ module.exports = class Main {
         }
     }
     async PlayerSkill(value,i,m){
+        console.log(value);
+        // return;
        switch (value.type) {
             case "buff":
             var ob = {
@@ -198,16 +200,21 @@ module.exports = class Main {
                 "turn": value.turn
             }
             arg[i].member[m].Buff.push(ob);
-            //msg
+            arg[i].member[m].msg = this.msg(value.msg,arg[i].member[m]);
             break;
        
             case "atk":
-               
+            arg[i].monster.HP = arg[i].monster.HP - value.dmg;
+            arg[i].member[m].msg = this.msg(value.msg,arg[i].member[m]);
             break;
        }
     }
     
-    PlayerATK(id,skill,message){
+    msg(value,player){
+        value.replace("%user%", `${player.username}`);
+        return value;
+    }
+    async PlayerATK(id,skill,message){
         let username = Users.getName(id);
         let job = Users.getJob(id);
         for (let i = 0; i < arg.length; i++) {
@@ -215,9 +222,16 @@ module.exports = class Main {
                 if (arg[i].member[a].username === username) {
                     arg[i].member[a].useSkill = true;
                     arg[i].member[a].cooldownSkill[skill] = jobs[job].Skill[skill].cooldown;
-                    await this.PlayerSkill(jobs[job].run(skill,arg[i].member[a]));
+                    await this.PlayerSkill(
+                        jobs[job].run(
+                            skill,
+                            arg[i].member[a]
+                        ),
+                        i,
+                        a
+                        );
 
-                    return;
+                    // return;
                     arg[i].seesion = arg[i].seesion+1;
                     let pm = "";
                     for (let g = 0; g < arg[i].member.length; g++) {
@@ -225,8 +239,8 @@ module.exports = class Main {
                         
                     }
                     arg[i].PM = pm;
-                    arg[i].monster.HP = arg[i].monster.HP - dmg;
-                    // console.log(arg[i]);
+                    
+
                     if (arg[i].monster.HP <= 0) {
                         this.DropItem(i,id,message);
                         return;
