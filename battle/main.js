@@ -87,6 +87,8 @@ module.exports = class Main {
     getRoom(id){
         let username = Users.getName(id);
         for (let i = 0; i < arg.length; i++) {
+            var v = arg[i] ? true : false;
+            if (v) {
             for (let a = 0; a < arg[i].member.length; a++) {
                 if (arg[i].member[a].username === username) {
                     // console.log(arg[i]);
@@ -94,6 +96,7 @@ module.exports = class Main {
                 }
             }
         }
+    }
     }
     PlayerEmbed(id){
         let room = this.getRoom(id);
@@ -164,17 +167,19 @@ module.exports = class Main {
     addTurn(id){
      
         for (let i = 0; i < arg.length; i++) {
+            var v = arg[i] ? true : false;
+            if (v) {
            if (arg[i].id === id) {
             arg[i].turn = arg[i].turn + 1;
             for (let a = 0; a < arg[i].member.length; a++) {
                 arg[i].member[a].useSkill = false;
-                console.log(arg[i].member[a]);
+                // console.log(arg[i].member[a]);
                     for (let m = 0; m < arg[i].member[a].cooldownSkill.length; m++) {
                         if (arg[i].member[a].cooldownSkill[m] > 0) {
                          arg[i].member[a].cooldownSkill[m] = arg[i].member[a].cooldownSkill[m] - 1;
                         }
                      }
-
+                    }
             }
            }
         }
@@ -183,6 +188,8 @@ module.exports = class Main {
     isUse(id){
         let username = Users.getName(id);
         for (let i = 0; i < arg.length; i++) {
+            var v = arg[i] ? true : false;
+            if (v) {
             for (let a = 0; a < arg[i].member.length; a++) {
                 if (arg[i].member[a].username === username) {
                     return arg[i].member[a].useSkill;
@@ -190,6 +197,21 @@ module.exports = class Main {
             }
         }
     }
+    }
+
+    RemovePlayerBuff(i){
+        for (let a = 0; a < arg[i].member.length; a++) {
+           for (let n = 0; n < arg[i].member[a].Buff.length; n++) {
+               if (arg[i].member[a].Buff[n].turn > 0) {
+                arg[i].member[a].Buff[n].turn = arg[i].member[a].Buff[n].turn - 1;
+                if (arg[i].member[a].Buff[n].turn === 0) {
+                    arg[i].member[a].Buff.splice(n,n);
+                }
+               }   
+           }
+        }
+    }
+
     async PlayerSkill(value,i,m){
         console.log(value);
         // return;
@@ -214,10 +236,13 @@ module.exports = class Main {
         value.replace("%user%", `${player.username}`);
         return value;
     }
+
     async PlayerATK(id,skill,message){
         let username = Users.getName(id);
         let job = Users.getJob(id);
         for (let i = 0; i < arg.length; i++) {
+            var v = arg[i] ? true : false;
+            if (v) {
             for (let a = 0; a < arg[i].member.length; a++) {
                 if (arg[i].member[a].username === username) {
                     arg[i].member[a].useSkill = true;
@@ -243,6 +268,7 @@ module.exports = class Main {
 
                     if (arg[i].monster.HP <= 0) {
                         this.DropItem(i,id,message);
+                        delete arg[i];
                         return;
                     }
                     if (arg[i].seesion === arg[i].Maxseesion) {
@@ -257,13 +283,14 @@ module.exports = class Main {
             }
         }
     }
+    }
     
     EntityATK(i,id,message){
         var msg = "";
         let s = monsters[arg[i].monster.name].Skill[mt_rand(0,2)];
         let r = mt_rand(0,arg[i].member.length) - 1;
         let p = r < 0 ? 0 : r;
-           
+        this.RemovePlayerBuff(i);
         switch (s.type.split("-")[0]) {
             case "atk":
                 switch (s.type.split("-")[1]) {
