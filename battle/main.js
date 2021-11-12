@@ -237,6 +237,25 @@ module.exports = class Main {
         return value;
     }
 
+    async MonsterSkill(value,i,m){
+        console.log(value);
+        // return;
+       switch (value.type) {
+            case "buff":
+            var ob = {
+                "name": value.name,
+                "turn": value.turn
+            }
+            arg[i].member[m].Buff.push(ob);
+            arg[i].member[m].msg = this.msg(value.msg,arg[i].member[m]);
+            break;
+       
+            case "atk":
+            arg[i].monster.HP = arg[i].monster.HP - value.dmg;
+            arg[i].member[m].msg = this.msg(value.msg,arg[i].member[m]);
+            break;
+       }
+    }
     async PlayerATK(id,skill,message){
         let username = Users.getName(id);
         let job = Users.getJob(id);
@@ -338,13 +357,16 @@ module.exports = class Main {
     isCooldown(id,skill){
         let username = Users.getName(id);
         for (let i = 0; i < arg.length; i++) {
+            var v = arg[i] ? true : false;
+            if (v) {
             for (let a = 0; a < arg[i].member.length; a++) {
                 if (arg[i].member[a].username === username) {
                    if (arg[i].member[a].cooldownSkill[skill] > 0) {
                     return true;
                    }
-                   return false;
-                }
+                   return false;        
+            }
+        }
             }
         }
     }
