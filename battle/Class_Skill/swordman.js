@@ -3,8 +3,8 @@ const mt_rand = require("../../add-on/mt_rand");
 
 module.exports = {
     class: "swordman",
-    run: (r,p) =>{
-        switch (r) {
+    run: (Skill,player) =>{
+        switch (Skill) {
             case 0:
                 var ob = {
                     "type": "buff",
@@ -15,8 +15,8 @@ module.exports = {
             return ob;
 
             case 1:
-                var cri = mt_rand(1,10) < 2 ? p.Dmg * 2 : 0;
-                var dmg = (p.Dmg * 1.5) + cri;
+                var cri = mt_rand(1,10) < 2 ? player.Dmg * 2 : 0;
+                var dmg = (player.Dmg * 1.5) + cri;
 
                 var ob = {
                     "type": "atk",
@@ -26,7 +26,7 @@ module.exports = {
             return ob;
 
             case 2:
-                var dmg = p.HP - p.MaxHP;
+                var dmg = player.HP - player.MaxHP;
                 var ob = {
                     "type": "atk",
                     "dmg": dmg,
@@ -35,7 +35,7 @@ module.exports = {
             return ob;
 
             case 3:
-                var dmg = p.Dmg;
+                var dmg = player.Dmg;
                 var ob = {
                     "type": "atk",
                     "dmg": dmg,

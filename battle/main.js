@@ -232,9 +232,18 @@ module.exports = class Main {
        }
     }
     
-    msg(value,player){
-        value.replace("%user%", `${player.username}`);
-        return value;
+    msg(value,player,type){
+        switch (type) {
+            case "player":
+                value.replace("%user%", `${player.username}`);
+            return value;
+            
+        
+            default:
+                value.replace("%user%", `${player.name}`);
+            return value;
+        }
+        
     }
 
     async MonsterSkill(value,i,m){
@@ -306,29 +315,17 @@ module.exports = class Main {
     
     EntityATK(i,id,message){
         var msg = "";
-        let s = monsters[arg[i].monster.name].Skill[mt_rand(0,2)];
+        // let s = monsters[arg[i].monster.name].Skill[mt_rand(0,2)];
         let r = mt_rand(0,arg[i].member.length) - 1;
         let p = r < 0 ? 0 : r;
         this.RemovePlayerBuff(i);
-        switch (s.type.split("-")[0]) {
-            case "atk":
-                switch (s.type.split("-")[1]) {
-                    case "basic":
-                    var dmg = s.dmg;
-                    break;               
-                }
-            break;
-
-            case "miss":
-                var ob = {
-                    "type": "miss",
-                    "turn": s.turn
-                    }
-                arg[i].monster.Buff.push(ob);
-                var dmg = 0;
-                arg[i].MM =`${arg[i].monster.name} : บัฟหลบการโจมตีให้ตัวเอง\n`;
-            break;
-                }
+        await this.MonsterSkill(
+            monsters[arg[i].monster.name].run(
+                mt_rand(0,2)
+            ),
+            i,
+            a
+            );
 
             if (arg[i].member[p].Buff.length > 0) {
 
